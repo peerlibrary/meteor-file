@@ -12,10 +12,7 @@ Package.onUse(function (api) {
   // Core dependencies.
   api.use([
     'underscore',
-    'ejson',
-    'templating',
-    'spacebars',
-    'blaze'
+    'ejson'
   ]);
 
   api.export('MeteorFile');
@@ -23,11 +20,6 @@ Package.onUse(function (api) {
   api.addFiles([
     'meteor-file.js'
   ]);
-
-  api.addFiles([
-    'meteor-file-uploader.html',
-    'meteor-file-uploader.js'
-  ], 'client');
 });
 
 Package.onTest(function (api) {
