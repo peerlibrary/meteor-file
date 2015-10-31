@@ -1,7 +1,7 @@
 Package.describe({
   name: 'peerlibrary:meteor-file',
   summary: "Simple file uploading for Meteor",
-  version: '0.1.0',
+  version: '0.2.0',
   git: 'https://github.com/peerlibrary/meteor-file.git',
   documentation: null
 });
