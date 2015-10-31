@@ -159,11 +159,11 @@ if (Meteor.isClient) {
 
       var error = null;
       if (!Blob.prototype.isPrototypeOf(file)) {
-        error = new Meteor.Error(400, "First parameter must inherit from Blob");
+        error = new Meteor.Error('invalid-request', "First parameter must inherit from Blob");
       }
 
       if (!_.isString(method)) {
-        error = new Meteor.Error(400, "Second parameter must be a Meteor.method name");
+        error = new Meteor.Error('invalid-request', "Second parameter must be a Meteor.method name");
       }
 
       if (error) {

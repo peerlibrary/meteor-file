@@ -1,11 +1,11 @@
 /************************ Template ***************************************/
 
-Template._meteorFileUploader.created = function() {
+Template._meteorFileUploader.onCreated(function() {
   // enable size to be an expression like "10*1024" but protect from villainous code injection with a regexp
   this.data.size = (this.data.size && /^(\d|\*|\+|\-|\/)+$/.test(this.data.size))?eval(this.data.size):null;
   this.data.options = _.extend({}, this.data);
   this.data.files = new Meteor.Collection(null);
-};
+});
 
 Template._meteorFileUploader.events({
   'change input[type=file]': function (e, tmpl) {
@@ -32,11 +32,11 @@ Template._meteorFileUploader.events({
 /*****************************************************************************/
 
 /************************ Handlebars *****************************************/
-UI.registerHelper('FileUploader', function (options) {
+Template.registerHelper('FileUploader', function (options) {
   return Template._meteorFileUploader;
 });
 
-UI.registerHelper('humanize', function (number, options) {
+Template.registerHelper('humanize', function (number, options) {
   return MeteorFile.humanize(number);
 });
 /*****************************************************************************/

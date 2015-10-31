@@ -1,22 +1,51 @@
 Package.describe({
+  name: 'peerlibrary:meteor-file',
   summary: "Simple file uploading for Meteor",
-  version: '0.0.7',
-  git: 'https://github.com/EventedMind/meteor-file.git'
+  version: '0.1.0',
+  git: 'https://github.com/peerlibrary/meteor-file.git'
 });
 
-Package.on_use(function (api) {
-  api.versionsFrom('METEOR@0.9.0');
-  api.use(['underscore', 'ejson'], ['client', 'server']);
-  api.use(['templating', 'spacebars', 'ui'], 'client');
-  api.add_files(['meteor-file.js'], ['client', 'server']);
-  api.add_files(['meteor-file-uploader.html', 'meteor-file-uploader.js'], 'client');
+Package.onUse(function (api) {
+  api.versionsFrom('METEOR@1.0.3.1');
 
-  if (typeof api.export !== 'undefined') {
-    api.export('MeteorFile', ['client', 'server']);
-  }
+  // Core dependencies.
+  api.use([
+    'underscore',
+    'ejson',
+    'templating',
+    'spacebars',
+    'blaze'
+  ]);
+
+  api.export('MeteorFile');
+
+  api.addFiles([
+    'meteor-file.js'
+  ]);
+
+  api.addFiles([
+    'meteor-file-uploader.html',
+    'meteor-file-uploader.js'
+  ], 'client');
 });
 
-Package.on_test(function (api) {
-  api.use(['meteor-file', 'tinytest', 'test-helpers', 'peerlibrary:blob@0.1.2']);
-  api.add_files('meteor-file-test.js', ['client', 'server']);
+Package.onTest(function (api) {
+  api.use([
+    'tinytest',
+    'test-helpers'
+  ]);
+
+  // Internal dependencies.
+  api.use([
+    'peerlibrary:meteor-file'
+  ]);
+
+  // 3rd party dependencies.
+  api.use([
+    'peerlibrary:blob@0.1.2'
+  ]);
+
+  api.addFiles([
+    'meteor-file-test.js'
+  ]);
 });
