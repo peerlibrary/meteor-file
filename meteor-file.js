@@ -194,8 +194,12 @@ if (Meteor.isClient) {
                   if (err) {
                     self.rewind();
                     self._setStatus(err);
-                    callback && callback(err);
-                    throw err;
+                    if (callback) {
+                      callback(err);
+                    }
+                    else {
+                      throw err;
+                    }
                   }
                   else {
                     self.bytesUploaded += self.data.length;
